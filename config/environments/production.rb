@@ -106,7 +106,8 @@ Rails.application.configure do
     # :domain => "heroku.com",
     :port => 465,
     :authentication => :plain,
-    :enable_starttls_auto => true
+    :enable_starttls_auto => true,
+    :ssl => true
   }
 
 end
