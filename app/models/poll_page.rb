@@ -1,6 +1,4 @@
 class PollPage
-  @@counter = 0
-
   def self.perform(page: nil)
     html = page.html
     sha2_hash = page.sha2_hash
@@ -20,15 +18,13 @@ class PollPage
   end
 
   def self.perform_all
-    @@counter += 1
-
     Page.all.shuffle.each do |page|
       # 1 Instrumentor
       # 2 BAG
       # 3 Kt. ZH
       hour = Time.now.hour
       next if hour < 8 || hour > 19
-      next if page.id > 3 && @@counter % 13 != 1
+      next if page.id > 3 && rand(13) == 0
 
       Rails.logger.info "#{@@counter.to_s} – Yeah: Polling #{page.name} (#{page.id})"
 
