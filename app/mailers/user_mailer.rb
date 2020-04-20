@@ -10,7 +10,7 @@ class UserMailer < ApplicationMailer
     logger.info 'helo'
     logger.info maily
     logger.info AppSetting.mailer_from_address
-    logger.info Rails.configuration
+    logger.info ActionMailer::Base.smtp_settings
     logger.info 'end'
   end
 
