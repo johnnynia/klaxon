@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
     @user = user
 
     maily = mail(to: @user.email, subject: 'Log in to Klaxon')
-    puts maily
+    logger.info maily
   end
 
   def welcome_email(user: nil, invited_by: nil)
@@ -17,7 +17,7 @@ class UserMailer < ApplicationMailer
     @user = user
 
     maily = mail(to: @user.email, subject: 'Welcome to Klaxon!')
-    puts maily
+    logger.info maily
   end
 
 end
