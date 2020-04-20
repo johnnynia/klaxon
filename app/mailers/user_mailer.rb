@@ -10,6 +10,8 @@ class UserMailer < ApplicationMailer
     logger.info 'helo'
     logger.info maily
     logger.info AppSetting.mailer_from_address
+    logger.info Rails.configuration
+    logger.info 'end'
   end
 
   def welcome_email(user: nil, invited_by: nil)
