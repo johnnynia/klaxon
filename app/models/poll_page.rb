@@ -26,7 +26,7 @@ class PollPage
       next if hour < 8 || hour > 19
       next if page.id > 3 && rand(13) != 0
 
-      Rails.logger.info "#{@@counter.to_s} – Yeah: Polling #{page.name} (#{page.id})"
+      Rails.logger.info "Yeah: Polling #{page.name} (#{page.id})"
 
       begin
         self.perform(page: page)
