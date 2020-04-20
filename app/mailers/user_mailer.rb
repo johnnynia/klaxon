@@ -6,7 +6,8 @@ class UserMailer < ApplicationMailer
     @url = token_session_url(token: token)
     @user = user
 
-    mail(to: @user.email, subject: 'Log in to Klaxon')
+    maily = mail(to: @user.email, subject: 'Log in to Klaxon')
+    puts maily
   end
 
   def welcome_email(user: nil, invited_by: nil)
@@ -15,7 +16,8 @@ class UserMailer < ApplicationMailer
     @url = token_session_url(token: token)
     @user = user
 
-    mail(to: @user.email, subject: 'Welcome to Klaxon!')
+    maily = mail(to: @user.email, subject: 'Welcome to Klaxon!')
+    puts maily
   end
 
 end
