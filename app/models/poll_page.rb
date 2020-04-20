@@ -30,7 +30,7 @@ class PollPage
       next if hour < 8 || hour > 19
       next if page.id > 3 && @@counter % 13 != 1
 
-      logger.info "Yeah: Polling #{page.title}"
+      Rails.logger.info "Yeah: Polling #{page.title}"
 
       begin
         self.perform(page: page)
