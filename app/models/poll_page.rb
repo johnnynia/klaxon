@@ -23,7 +23,7 @@ class PollPage
       # 2 BAG
       # 3 Kt. ZH
       hour = Time.now.hour
-      next if hour < 8 || hour > 19
+      next if hour < 6 || hour > 17
       next if page.id > 3 && rand(13) != 0
 
       Rails.logger.info "Yeah: Polling #{page.name} (#{page.id})"
