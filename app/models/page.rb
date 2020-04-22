@@ -33,24 +33,36 @@ class Page < ApplicationRecord
   end
 
   def document
-    Nokogiri::HTML(html)
+    begin
+      Nokogiri::HTML(html)
+    rescue
+      html
+    end
   end
 
   def match_text
-    @match = document.css(self.css_selector)
+    begin
+      @match = document.css(self.css_selector)
 
-    if self.exclude_selector.present?
-      # Set the content of the exclude selector to the empty string
-      @match.css(self.exclude_selector).each do |node|
-        node.content = ""
+      if self.exclude_selector.present?
+        # Set the content of the exclude selector to the empty string
+        @match.css(self.exclude_selector).each do |node|
+          node.content = ""
+        end
       end
-    end
 
-    @match.text
+      @match.text
+    rescue
+      html
+    end
   end
 
   def match_html
-    document.css(self.css_selector).to_html
+    begin
+      document.css(self.css_selector).to_html
+    rescue
+      html
+    end
   end
 
   def sha2_hash

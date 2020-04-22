@@ -8,20 +8,28 @@ class PageSnapshot < ApplicationRecord
   end
 
   def document
-    Nokogiri::HTML(html)
+    begin
+      Nokogiri::HTML(html)
+    rescue
+      html
+    end
   end
 
   def match_text
-    @match = document.css(self.page.css_selector)
+    begin
+      @match = document.css(self.page.css_selector)
 
-    if self.page.exclude_selector.present?
-      # Set the content of the exclude selector to the empty string
-      @match.css(self.page.exclude_selector).each do |node|
-        node.content = ""
+      if self.page.exclude_selector.present?
+        # Set the content of the exclude selector to the empty string
+        @match.css(self.page.exclude_selector).each do |node|
+          node.content = ""
+        end
       end
-    end
 
-    @match.text
+      @match.text
+    rescue
+      html
+    end
   end
 
   def display_hash
