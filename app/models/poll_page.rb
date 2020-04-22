@@ -24,7 +24,10 @@ class PollPage
       # 3 Kt. ZH
       hour = Time.now.hour
       next if hour < 6 || hour > 17
-      next if page.id > 3 && rand(13) != 0
+
+      # Allow a number at the start of a page.name to set a polling interval.
+      interval = page.name.to_i(10)
+      next if interval != 0 && rand(interval) != 0
 
       Rails.logger.info "Yeah: Polling #{page.name} (#{page.id})"
 
