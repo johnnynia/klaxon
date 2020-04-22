@@ -25,7 +25,7 @@ class PagesController < ApplicationController
   # GET /pages
   def index
     @pages = Page.all
-    @pages.sort_by! { |p| p.name }
+    @pages = @pages.sort_by { |p| p.name }
   end
 
   # GET /pages/1
